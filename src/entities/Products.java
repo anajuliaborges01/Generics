@@ -2,7 +2,7 @@ package entities;
 
 import java.util.Objects;
 
-public class Products {
+public class Products implements Comparable <Product> {
 	private String name;
 	private Double price;
 	
@@ -35,6 +35,26 @@ public class Products {
 		if (getClass() != obj.getClass())
 			return false;
 		Products other = (Products) obj;
-		return Objects.equals(name, other.name) && Objects.equals(price, other.price);
+		if (name ==null) {
+			return false;
+		}else if (!name.equals(other.name))
+		return false;
+		if (price == null) {
+			if(other.price != null)
+				return false;
+		}else if (!price.equals(other.price))
+			return false;
+		return true;
+		
+		}
+		
+	@Override
+	public String toString() {
+		return "Products [name=" + name + ", price=" + price + "]";
 	}
+@Override
+	public int compareTo(Product other) {
+		return name.toUpperCase().compareTo(other.getName().toUpperCase());
+	
+}
 }
